@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h2>The Header has changing <span type="color">Color</span> js</h2>
+        <div>
+        <label>Spacing</label>
+        <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+
+        <label>blur</label>
+        <input type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+
+        <label>color</label>
+        <input type="color" name="color" min="10" max="200" value="red" >
+    </div>
+
+    <img src="https://i.pinimg.com/originals/ca/a2/65/caa2654e79e2dc88c6a3c18e1a353452.jpg">
+    </body>
+    <style>
+        :root{
+            --color: red;
+            --spacing: 10px;
+            --blur: 10px;
+        }
+
+        img{
+            padding: var(--spacing);
+            background: var(--color);
+             filter: blur(var(--blur));
+        }
+
+        body{
+            text-align: center;
+            background-color: black;
+            color:blanchedalmond;
+            
+        }
+    
+    </style>
+    <script>
+    
+    const inputs = document.querySelectorAll('input');
+
+    function handleupdate(){
+        const suffix = this.dataset.sizing || '';
+        document.documentElement.style.setProperty(`--${this.name}`,this.value+suffix);
+    }
+
+    inputs.forEach(input => input.addEventListener('mousemove',handleupdate));
+</script>
+</html>
