@@ -12,9 +12,13 @@ function playing(e){
     audio.play();
 }
 
-function mobileclick(e){
-  const key = e.path[1];
+function mobileclick(obj){
+  console.log("mobile");
+  console.log(obj.path);
+  const key = obj.path[1];
+  
   const audio = document.querySelector(`audio[data-key="${key.getAttribute('data-key')}"]`);
+  console.log(key.getAttribute('data-key'));
   if (audio == null) return;
 
   key.classList.add('playing');
@@ -32,7 +36,7 @@ var keys = Array.from(document.querySelectorAll('.key'));
 
 
 keys.forEach(key => key.addEventListener("transitionend", removeTransition));
-keys.forEach(key => key.addEventListener("click", mobileclick));
+keys.forEach(key => key.addEventListener("touchstart", mobileclick));
 window.addEventListener("keydown",playing)
 
 
